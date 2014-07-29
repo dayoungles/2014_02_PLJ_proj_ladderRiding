@@ -8,32 +8,40 @@ public class Line {
 //	public Line(ArrayList<Box> boxLine){
 //		this.boxLine = boxLine;
 //	}
-
-	//line에 박스를 채우는 init 작업. 
+	
+	public ArrayList<Box> getBoxLine() {
+		return boxLine;
+	}
+	public void setBoxLine(ArrayList<Box> boxLine) {
+		this.boxLine = boxLine;
+	}
+	
+	
+	
+	/**
+	 * line에 박스를 채우는 init 작업. 
+	 * @param columnNum
+	 * @param n
+	 */
 	public void initLine(int columnNum, int n){
 		for(int i = 0 ; i < n; i++){
 			Box box = new Box(columnNum, i);
 			boxLine.add(box);
+			coloringLine(boxLine);
 		}
 	}
+
 	/**
 	 * 박스가 채워진 arrayList에 랜덤으로 박스를 컬러링. 
 	 * @param boxLine
 	 */
-	public ArrayList<Box> coloringLine(ArrayList<Box> boxLine){
+	public void coloringLine(ArrayList<Box> boxLine){
 		for(int i = 0; i < boxLine.size(); i++){
-			int range = (int)Math.random()*10;
+			int range = (int)(Math.random()*10) + 1;//괄호 위치; 때문에 계속 1나옴. 어떤 원리인지 기억할 것. 
 			if(range < 5 && range >=0)
 				boxLine.get(i).setColored(true);//0~4 사이의 숫자가 걸리면 색칠. 
-			System.out.println(boxLine.get(i).isColored());
+
 		}
-		return boxLine;
 	}
 	
-	public static void main(String[] args) {
-		Line line = new Line();
-		line.initLine(3, 5);
-		
-		line.coloringLine(line.boxLine);
-	}
 }
