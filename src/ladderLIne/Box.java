@@ -1,4 +1,4 @@
-package ladderLIne;
+package ladderline;
 
 public class Box {
 	boolean colored;
@@ -37,6 +37,7 @@ public class Box {
 	public void setY(int y) {
 		this.y = y;
 	}
+	
 
 
 

@@ -1,4 +1,4 @@
-package ladderLIne;
+package ladderline;
 
 public class Position {
 	int x, y;

@@ -1,6 +1,7 @@
-package ladderLIne;
+package ladderline;
 
 import junit.framework.TestCase;
+import ladderline.Position;
 
 public class PositionTest extends TestCase {
 	
