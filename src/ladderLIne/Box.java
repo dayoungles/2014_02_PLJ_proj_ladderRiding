@@ -2,12 +2,16 @@ package ladderLIne;
 
 public class Box {
 	boolean colored;
-	Position pos;
+	int x, y;
 	
+	public Box(int x, int y){
+		this.x= x;
+		this.y = y;
+	}
 	public Box(boolean colored, int x, int y){
 		this.colored = colored;
-		pos.setPosX(x);
-		pos.setPosY(y);
+		this.x= x;
+		this.y = y;
 	}
 
 	public boolean isColored() {
@@ -18,13 +22,23 @@ public class Box {
 		this.colored = colored;
 	}
 
-	public Position getPos() {
-		return pos;
+	public int getX() {
+		return x;
 	}
 
-	public void setPos(Position pos) {
-		this.pos = pos;
+	public void setX(int x) {
+		this.x = x;
 	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+
 
 }
 
