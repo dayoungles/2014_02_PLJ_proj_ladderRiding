@@ -19,7 +19,7 @@ public class LineTest extends TestCase {
 	public void testColoringLine() throws Exception{
 		Line line = new Line();
 		line.initLine(1, 5);
-		line.coloringLine(line.getBoxLine());
+		line.coloringLine();
 		//헐 랜덤값은 어떻게 테스트를 하지?;;;;
 		for(int i =0; i< 5; i ++){
 			System.out.println(line.getBoxLine().get(i).isColored());

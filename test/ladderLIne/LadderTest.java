@@ -14,7 +14,7 @@ public class LadderTest extends TestCase {
 	
 	public void testMakeLadder() throws Exception {
 		Ladder ladder = new Ladder();
-		ladder.makeLadder(5);
+		ladder.initLadder(5);
 		for(int i = 0; i < 5; i++){
 			for(int j = 0; j< 5; j++){
 				System.out.println("("+ladder.getLadder().get(i).getBoxLine().get(j).getX()
@@ -23,6 +23,13 @@ public class LadderTest extends TestCase {
 						+")");
 			}
 			System.out.println("------------------------");
+		}
+	}
+	
+	public void testRandom() throws Exception {
+		for(int i = 0 ; i< 100; i++){
+			int range = (int)(Math.random()*10);
+			System.out.println(range);
 		}
 	}
 

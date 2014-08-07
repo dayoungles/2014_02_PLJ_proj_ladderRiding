@@ -27,7 +27,7 @@ public class Line {
 		for(int i = 0 ; i < n; i++){
 			Box box = new Box(columnNum, i);
 			boxLine.add(box);
-			coloringLine(boxLine);
+			
 		}
 	}
 
@@ -35,12 +35,18 @@ public class Line {
 	 * 박스가 채워진 arrayList에 랜덤으로 박스를 컬러링. 
 	 * @param boxLine
 	 */
-	public void coloringLine(ArrayList<Box> boxLine){
+	public void coloringLine(){
 		for(int i = 0; i < boxLine.size(); i++){
-			int range = (int)(Math.random()*10) + 1;//괄호 위치; 때문에 계속 1나옴. 어떤 원리인지 기억할 것. 
-			if(range < 5 && range >=0)
-				boxLine.get(i).setColored(true);//0~4 사이의 숫자가 걸리면 색칠. 
-
+			if(i!= boxLine.size()-1){
+				int range = (int)(Math.random()*10);//괄호 위치; 때문에 계속 1나옴. 어떤 원리인지 기억할 것.
+				if(range < 5 && range >=0){
+					boxLine.get(i).setColored(true);//0~4 사이의 숫자가 걸리면 색칠.
+					continue;
+				}
+			} 
+			
+			boxLine.get(i).setColored(false);//마지막 줄은 전부다 false 
+			
 		}
 	}
 	
