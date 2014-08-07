@@ -1,29 +1,36 @@
 package ladderline;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Play {
 	Ladder ladder = new Ladder();
 	
 	public static void main(String[] args){
 		Play play = new Play();
-		play.run();
+		Scanner scan = new Scanner(System.in);
+		System.out.println("게임할 인원 수를 입력(숫자만)");
+		String input= scan.nextLine();
+		play.run(Integer.parseInt(input));
 		
 	}
-	void run(){
-		//게임할 사람 수 입력
-		int rowNum = 6;
+	void run(int rowNum){
+
 		ladder.initLadder(rowNum);
 		printLadder();
-		//출발지 선택
-		int start = 0;
-		Position pos = new Position(start);
-		System.out.println("출발: "+  pos.toString());
-		for(int i = 0; i < rowNum; i++){
-			pos = followLadder(pos);
-			System.out.println(pos);
+		//출발지 선택은 오프라인에서 자체적으로들 하라고 하고;;
+		
+		
+		for(int k=0; k<rowNum; k++){
+			Position pos = new Position(k);
+			System.out.print(k);
+			for(int i = 0; i < rowNum; i++){
+				pos = followLadder(pos);
+				System.out.print("-" + pos.getPosX());
+			}
+			System.out.println();
+			System.out.println(k+"에서 출발한 사람은 "+ pos.getPosX()+" 번으로 내려왔음 ");
 		}
-		System.out.println(pos.getPosX()+"번으로 내려왔음 ");
 	}
 	
 	public Position followLadder(Position pos){

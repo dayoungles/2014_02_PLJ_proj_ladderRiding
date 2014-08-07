@@ -6,17 +6,17 @@ import ladderline.Position;
 public class PositionTest extends TestCase {
 	
 	public void testGetposx() throws Exception {
-		Position pos = new Position(1, 2);
+		Position pos = new Position(1);
 		assertEquals(1, pos.getPosX());
 	}
 	
 	public void testGetposy() throws Exception {
-		Position pos = new Position(1, 2);
+		Position pos = new Position(1);
 		assertEquals(2,pos.getPosY());
 	}
 	
 	public void testSetposy() throws Exception {
-		Position pos = new Position();
+		Position pos = new Position(5);
 		pos.setPosXY(7, 3);
 		
 		assertEquals(3, pos.getPosY());
