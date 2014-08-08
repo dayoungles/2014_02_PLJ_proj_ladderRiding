@@ -1,6 +1,8 @@
 package ladderline;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Random;
 
 import junit.framework.TestCase;
 
@@ -45,6 +47,19 @@ public class LadderTest extends TestCase {
 			}
 			System.out.println("------------------------");
 		}
+	}
+	
+	public void testNewColoringLogic() throws Exception {
+		Ladder ladder = new Ladder();
+		ladder.initLadder(5);
+		
+	}
+	
+	public void testrandomNumn() throws Exception {
+		Random random = new Random();
+		int x= random.nextInt(15);
+		System.out.println(x);
+
 	}
 
 }

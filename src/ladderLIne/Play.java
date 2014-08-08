@@ -29,7 +29,7 @@ public class Play {
 				System.out.print("-" + pos.getPosX());
 			}
 			System.out.println();
-			System.out.println(k+"에서 출발한 사람은 "+ pos.getPosX()+" 번으로 내려왔음 ");
+			System.out.println(k+"에서 출발한 사람은 <<"+ pos.getPosX()+">> 번으로 내려왔음 ");
 		}
 	}
 	
@@ -87,12 +87,14 @@ public class Play {
 	void printLadder(){
 		int n = ladder.getLadder().size();
 		for(int j = 0; j < n; j++){
+
 			for(int i = 0; i< n; i++){
 				if(ladder.getLadder().get(i).getBoxLine().get(j).isColored()){
-					System.out.print("|T");
+					System.out.print("|--");
 				} else {
-					System.out.print("|F");
+					System.out.print("|  ");
 				}
+
 //				System.out.print("("+ladder.getLadder().get(i).getBoxLine().get(j).getX()
 //				+" "+ladder.getLadder().get(i).getBoxLine().get(j).getY()+
 //				" "+ ladder.getLadder().get(i).getBoxLine().get(j).isColored()
