@@ -29,7 +29,7 @@ public class Play {
 				System.out.print("-" + pos.getPosX());
 			}
 			System.out.println();
-			System.out.println(k+"에서 출발한 사람은 <<"+ pos.getPosX()+">> 번으로 내려왔음 ");
+			System.out.println(k+" 에서 출발한 사람은 << "+ pos.getPosX()+" >> 번으로 내려왔음 ");
 		}
 	}
 	
@@ -100,7 +100,7 @@ public class Play {
 //				" "+ ladder.getLadder().get(i).getBoxLine().get(j).isColored()
 //						+")");
 			}
-			System.out.print("|");
+			
 			System.out.println();
 		}
 	}
