@@ -11,26 +11,33 @@ public class Play {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("게임할 인원 수를 입력(숫자만)");
 		String input= scan.nextLine();
-		play.run(Integer.parseInt(input));
-		
+		ArrayList<Position> forPrint= play.run(Integer.parseInt(input));
+		play.printAnswer(forPrint);
 	}
-	void run(int rowNum){
+	
+	private void printAnswer(ArrayList<Position> forPrint) {
+		for(int i =0; i< forPrint.size(); i++){
+			System.out.println(i+" 에서 출발하면  "+  forPrint.get(i).getPosX());
+		}
+	}
+
+	ArrayList<Position> run(int rowNum){
 
 		ladder.initLadder(rowNum);
 		printLadder();
 		//출발지 선택은 오프라인에서 자체적으로들 하라고 하고;;
-		
+		ArrayList<Position> answer = new ArrayList<Position>();
 		
 		for(int k=0; k<rowNum; k++){
 			Position pos = new Position(k);
-			System.out.print(k);
+			
 			for(int i = 0; i < rowNum; i++){
 				pos = followLadder(pos);
-				System.out.print("-" + pos.getPosX());
 			}
-			System.out.println();
-			System.out.println(k+" 에서 출발한 사람은 << "+ pos.getPosX()+" >> 번으로 내려왔음 ");
+			answer.add(pos);
+			
 		}
+		return answer;
 	}
 	
 	public Position followLadder(Position pos){
@@ -38,8 +45,7 @@ public class Play {
 		//colored값에 따라서 움직임을 결정한다.  
 		
 		boolean boxColor= ladder.getLadder().get(pos.getPosX()).getBoxLine().get(pos.getPosY()).isColored();
-		//사다리 y 축을 다 내려가면 끝나야한다. 
-		
+
 		if(boxColor){
 			meetSelfColored(pos);
 		} else {
@@ -83,13 +89,21 @@ public class Play {
 		pos.setPosY(pos.getPosY()+1);
 		return pos;
 	}
-	
+	/**
+	 * 만들어진 사다리 출력 하는 함수 
+	 */
 	void printLadder(){
 		int n = ladder.getLadder().size();
+		
+		for(int i = 0; i < n; i++){
+			System.out.print(i+"  ");
+		}
+		System.out.println();
 		for(int j = 0; j < n; j++){
-
+			
 			for(int i = 0; i< n; i++){
-				if(ladder.getLadder().get(i).getBoxLine().get(j).isColored()){
+				boolean colored = ladder.getLadder().get(i).getBoxLine().get(j).isColored();
+				if(colored){
 					System.out.print("|--");
 				} else {
 					System.out.print("|  ");
