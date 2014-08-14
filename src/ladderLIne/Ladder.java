@@ -30,6 +30,7 @@ public class Ladder {
 		}
 		coloringLadderByLine(n);
 		coloringLadderByRandom(n);
+		coloringBackUp(n);
 
 	}
 	/**
@@ -110,6 +111,25 @@ public class Ladder {
 			}
 			lines.get(randomX).getBoxLine().get(randomY).setColored(true);
 			
+		}
+	}
+	/**
+	 * 사다리를 랜덤으로 그리다보니 세로라인에 아무것도 없을 때를 방지.
+	 * @param num
+	 */
+	public void coloringBackUp(int num) {
+		for(int i =0; i < num-1; i++){
+			boolean checkLine = false;
+			for(int j =0; j < num-1; j++){
+				boolean checkColor= lines.get(i).getBoxLine().get(j).isColored();
+				if(checkColor){
+					checkLine = true;
+					break;
+				}
+			}
+			if(!checkLine){
+				lines.get(i).getBoxLine().get(i).setColored(true);
+			}
 		}
 	}
 
