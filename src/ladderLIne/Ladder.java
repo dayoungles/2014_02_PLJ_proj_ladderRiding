@@ -33,6 +33,7 @@ public class Ladder {
 		coloringBackUp(n);
 
 	}
+	
 	/**
 	 * 세로 라인별로 랜덤하게 사다리 줄을 긋는 함수. 
 	 * @param startNum
@@ -40,8 +41,6 @@ public class Ladder {
 	public void coloringLadderByLine(int startNum) {
 		   //출발 인원을 10명 이상 늘리면 0번 라인은 거의 1번 아니면 2번에 떨어지는 확률이 나옴. 
 		   //문제가 있다고 생각해서 로직 수정. 하려고 했으나 새로운 줄긋기 방식과 병행하기로. 
-
-		
 		for (int i = 0; i < lines.size(); i++) {
 			
 			//가장 마지막 사다리는 줄을 긋지 않기 위해서 전부 false로 처리. 
@@ -56,8 +55,7 @@ public class Ladder {
 				//이미 왼쪽 줄에 색이 칠해져 있으면 자신의 칸에는 칠하지 않는다. 
 				if(i != 0 && lines.get(i-1).getBoxLine().get(j).isColored())
 					continue;
-				int range = (int) (Math.random() * 10);// 괄호 위치; 때문에 계속 1나옴. 어떤
-														// 원리인지 기억할 것.
+				int range = (int) (Math.random() * 10);// 괄호 위치; 때문에 계속 1나옴. 어떤 원리인지 기억할 것.
 				if (range < 5 && range >= 0) {
 					lines.get(i).getBoxLine().get(j).setColored(true);
 				} else {
@@ -68,7 +66,7 @@ public class Ladder {
 	}
 	/**
 	 *  byLine은 매 한 칸 별로 랜덤하게 선택했다면, 이 함수는 전체 사다리 중에서 랜덤하게 
-	 *  박스를 골라서 출발 인원만큼ㅁ 색칠한다.잘 섞이게 하기 위해서 하나 더 줄긋는 방식을 추가. 
+	 *  박스를 골라서 출발 인원만큼 색칠한다.잘 섞이게 하기 위해서 하나 더 줄긋는 방식을 추가. 
 	 * @param startNum
 	 */
 	public void coloringLadderByRandom(int startNum){
@@ -80,10 +78,7 @@ public class Ladder {
 			int randomX = random.nextInt(startNum-2);//전체 개수-1(0에서 시작하니까) -1(마지막줄 그으면 안되니까)
 			int randomY = random.nextInt(startNum);
 			
-//			if(randomX == startNum-1){//제일 왼쪽line은 로직 상, 줄을 그으면 안됨. 
-//				i--;
-//				continue;
-//			}
+
 			boolean checkSelf = lines.get(randomX).getBoxLine().get(randomY).isColored();
 			if(checkSelf){//자기 자리에 이미 선 있는지 확인
 				i--;
@@ -104,17 +99,15 @@ public class Ladder {
 				if(randomX <= startNum-2){
 					 rightColored = lines.get(randomX+1).getBoxLine().get(randomY).isColored();
 				}
-//				checkSelf = lines.get(randomX).getBoxLine().get(randomY).isColored();
-//				if(checkSelf){
-//					leftColored = true;//무한루프를 도는 듯?
-//				}
+
 			}
 			lines.get(randomX).getBoxLine().get(randomY).setColored(true);
 			
 		}
 	}
+	
 	/**
-	 * 사다리를 랜덤으로 그리다보니 세로라인에 아무것도 없을 때를 방지.
+	 * 사다리를 랜덤으로 그리다보니 세로라인에 줄을 하나도 안 그렀을 때를 방지.
 	 * @param num
 	 */
 	public void coloringBackUp(int num) {

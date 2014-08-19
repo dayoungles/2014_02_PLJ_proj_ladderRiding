@@ -21,13 +21,15 @@ public class Play {
 		}
 	}
 
-	ArrayList<Position> run(int rowNum){
+	private ArrayList<Position> run(int rowNum){
 
 		ladder.initLadder(rowNum);
 		printLadder();
 		//출발지 선택은 오프라인에서 자체적으로들 하라고 하고;;
 		ArrayList<Position> answer = new ArrayList<Position>();
 		
+		
+		//이 부분을 재귀로 수정할 수 있을 것 같음.0818 
 		for(int k=0; k<rowNum; k++){
 			Position pos = new Position(k);
 			
@@ -89,6 +91,7 @@ public class Play {
 		pos.setPosY(pos.getPosY()+1);
 		return pos;
 	}
+	
 	/**
 	 * 만들어진 사다리 출력 하는 함수 
 	 */
