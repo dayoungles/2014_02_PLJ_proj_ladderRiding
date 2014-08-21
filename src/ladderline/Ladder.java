@@ -41,11 +41,22 @@ public class Ladder {
 	public void coloringLadderByLine(int startNum) {
 		   //출발 인원을 10명 이상 늘리면 0번 라인은 거의 1번 아니면 2번에 떨어지는 확률이 나옴. 
 		   //문제가 있다고 생각해서 로직 수정. 하려고 했으나 새로운 줄긋기 방식과 병행하기로. 
+		
 		for (int i = 0; i < lines.size(); i++) {
+			/**
+			 * 다음 for 문의 로직을 Line 클래스 안으로 이동할 수 없을지 고민해 본다.
+			 * Line 클래스 안에서 구현하도록 시도해 보면 좋겠다. - javajigi
+			 */
 			
 			//가장 마지막 사다리는 줄을 긋지 않기 위해서 전부 false로 처리. 
 			if (i == lines.size() - 1) {
 				for (int j = 0; j < lines.size(); j++) {
+					/**
+					 * dot(.)을 최소한으로 사용하도록 해봐라.
+					 * 상태 변경하는 부분을 Line과 Box 클래스로 위임해라.
+					 * 이 코드가 바뀌면 아래 for문의 코드 또한 바뀔 수 있다.
+					 *  - javajigi
+					 */
 					lines.get(i).getBoxLine().get(j).setColored(false);
 				}
 				break;
@@ -84,6 +95,12 @@ public class Ladder {
 				i--;
 				continue;
 			}
+			
+			
+			/**
+			 * lines.get(randomX-1).getBoxLine().get(randomY) 부분이 계속 중복되고 있다.
+			 * 중복을 제거해 본다. - javajigi
+			 */
 			if(randomX !=0){//엑스 축이 0이 아니면 그 왼쪽 박스에 선이 있는지 확인
 				 leftColored= lines.get(randomX-1).getBoxLine().get(randomY).isColored();
 			}
@@ -111,6 +128,13 @@ public class Ladder {
 	 * @param num
 	 */
 	public void coloringBackUp(int num) {
+		/**
+		 * 다음 코드를 보면 현재 BoxLine의 상태 값을 얻어 온 다음 상태를 변경하고 있다.
+		 * 상태의 변경을 Box에 위임하는 구조로 바꾸는 것이 객체 지향적으로 사고하는 것이다.
+		 * boolean checkColor= lines.get(i).getBoxLine().get(j).isColored();
+		 * lines.get(i).getBoxLine().get(i).setColored(true);
+		 * 이 코드 리팩토링 해라. - javajigi
+		 */
 		for(int i =0; i < num-1; i++){
 			boolean checkLine = false;
 			for(int j =0; j < num-1; j++){

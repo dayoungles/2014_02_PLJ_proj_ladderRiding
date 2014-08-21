@@ -1,6 +1,9 @@
 package ladderline;
 
 public class Box {
+	/**
+	 * 특별한 경우가 아니면 field 접근 제어자는 private으로 구현 - javajigi
+	 */
 	boolean colored;
 	int x, y;
 	

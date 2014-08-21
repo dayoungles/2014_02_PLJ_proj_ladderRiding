@@ -42,6 +42,11 @@ public class Play {
 		return answer;
 	}
 	
+	/**
+	 * 사다리 실행 부분을 Ladder 클래스 안으로 위임한다.
+	 * 현재는 Ladder 클래스의 데이터를 가져와서 로직을 처리하고 있다.
+	 * Ladder 클래스의 데이터를 노출하지 말고 데이터를 가지고 있는 Ladder 클래스가 일을 하도록 해라. - javajigi
+	 */
 	public Position followLadder(Position pos){
 		//포스가 가지고 있는 x, y값을 이용해서, 그 박스 의 colored 값을 확인
 		//colored값에 따라서 움직임을 결정한다.  
