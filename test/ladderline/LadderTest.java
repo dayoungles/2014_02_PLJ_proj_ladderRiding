@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import junit.framework.TestCase;
+import ladderline.Ladder;
+import ladderline.Line;
 
 public class LadderTest extends TestCase {
 	public void testGetLadder() throws Exception {

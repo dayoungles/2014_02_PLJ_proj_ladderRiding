@@ -1,6 +1,7 @@
 package ladderline;
 
 import junit.framework.TestCase;
+import ladderline.Box;
 
 public class BoxTest extends TestCase {
 	public void testIsColored() throws Exception {

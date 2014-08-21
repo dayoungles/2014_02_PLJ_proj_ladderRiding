@@ -1,6 +1,8 @@
 package ladderline;
 
 import junit.framework.TestCase;
+import ladderline.Play;
+import ladderline.Position;
 
 public class PlayTest extends TestCase {
 	
