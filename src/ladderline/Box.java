@@ -3,9 +3,10 @@ package ladderline;
 public class Box {
 	/**
 	 * 특별한 경우가 아니면 field 접근 제어자는 private으로 구현 - javajigi
+	 * check
 	 */
-	boolean colored;
-	int x, y;
+	private boolean colored;
+	private int x, y;
 	
 	public Box(int x, int y){
 		this.x= x;

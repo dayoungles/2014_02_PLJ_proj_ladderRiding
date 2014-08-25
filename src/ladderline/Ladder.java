@@ -48,33 +48,30 @@ public class Ladder {
 			 * Line 클래스 안에서 구현하도록 시도해 보면 좋겠다. - javajigi
 			 */
 			
-			//가장 마지막 사다리는 줄을 긋지 않기 위해서 전부 false로 처리. 
+			/**
+			 * dot(.)을 최소한으로 사용하도록 해봐라.
+			 * 상태 변경하는 부분을 Line과 Box 클래스로 위임해라.
+			 * 이 코드가 바뀌면 아래 for문의 코드 또한 바뀔 수 있다.
+			 *  - javajigi
+			 */
 			if (i == lines.size() - 1) {
-				for (int j = 0; j < lines.size(); j++) {
-					/**
-					 * dot(.)을 최소한으로 사용하도록 해봐라.
-					 * 상태 변경하는 부분을 Line과 Box 클래스로 위임해라.
-					 * 이 코드가 바뀌면 아래 for문의 코드 또한 바뀔 수 있다.
-					 *  - javajigi
-					 */
-					lines.get(i).getBoxLine().get(j).setColored(false);
-				}
+				lines.get(i).setLastLine();
 				break;
 			}
+			
 			//칸별로 랜덤하게 줄을 그을지 선택.  
 			for (int j = 0; j < lines.size(); j++) {
+				
 				//이미 왼쪽 줄에 색이 칠해져 있으면 자신의 칸에는 칠하지 않는다. 
-				if(i != 0 && lines.get(i-1).getBoxLine().get(j).isColored())
+				if(i != 0 && lines.get(i-1).checkBoxColored(j))
 					continue;
-				int range = (int) (Math.random() * 10);// 괄호 위치; 때문에 계속 1나옴. 어떤 원리인지 기억할 것.
-				if (range < 5 && range >= 0) {
-					lines.get(i).getBoxLine().get(j).setColored(true);
-				} else {
-					lines.get(i).getBoxLine().get(j).setColored(false);
-				}
+				
+				lines.get(i).randomColoring();
+			
 			}
 		}
 	}
+
 	/**
 	 *  byLine은 매 한 칸 별로 랜덤하게 선택했다면, 이 함수는 전체 사다리 중에서 랜덤하게 
 	 *  박스를 골라서 출발 인원만큼 색칠한다.잘 섞이게 하기 위해서 하나 더 줄긋는 방식을 추가. 
@@ -102,23 +99,23 @@ public class Ladder {
 			 * 중복을 제거해 본다. - javajigi
 			 */
 			if(randomX !=0){//엑스 축이 0이 아니면 그 왼쪽 박스에 선이 있는지 확인
-				 leftColored= lines.get(randomX-1).getBoxLine().get(randomY).isColored();
+				 leftColored= lines.get(randomX-1).checkBoxColored(randomY);
 			}
 			if(randomX <= startNum-2){//엑스 축이 제일 오른쪽에서 -1칸이면 그 오른쪽 박스가 선이 있는지 확인. 
-				 rightColored = lines.get(randomX+1).getBoxLine().get(randomY).isColored();
+				 rightColored = lines.get(randomX+1).checkBoxColored(randomY);
 			}
 			while(leftColored || rightColored){//둘 중 하나라도 선이 있으면 다시 선을 그을 박스를 확인한다. 여기 바꿀 방법을 코드 리뷰 받아야 할 
 				randomX = random.nextInt(startNum-2);
 				randomY = random.nextInt(startNum); 
 				if(randomX !=0){
-					 leftColored= lines.get(randomX-1).getBoxLine().get(randomY).isColored();
+					 leftColored= lines.get(randomX-1).checkBoxColored(randomY);
 				}
 				if(randomX <= startNum-2){
-					 rightColored = lines.get(randomX+1).getBoxLine().get(randomY).isColored();
+					 rightColored = lines.get(randomX+1).checkBoxColored(randomY);
 				}
 
 			}
-			lines.get(randomX).getBoxLine().get(randomY).setColored(true);
+			lines.get(randomX).setBoxColor(randomY);
 			
 		}
 	}
@@ -138,16 +135,18 @@ public class Ladder {
 		for(int i =0; i < num-1; i++){
 			boolean checkLine = false;
 			for(int j =0; j < num-1; j++){
-				boolean checkColor= lines.get(i).getBoxLine().get(j).isColored();
+				boolean checkColor= lines.get(i).checkBoxColored(j);
 				if(checkColor){
 					checkLine = true;
 					break;
 				}
 			}
-			if(!checkLine){
-				lines.get(i).getBoxLine().get(i).setColored(true);
-			}
+//			if(!checkLine){
+//				lines.get(i).setBoxColor(i);
+//			}
+			lines.get(i).setBoxColor(i);
 		}
 	}
-
+	
+	
 }
